@@ -3,7 +3,7 @@ import re
 
 #1 
 def is_vowel(char):
-    if re.findall(r'[^aeiou]*[aeiuo]', char):
+    if re.findall(r'[^aeiou]*[aeiuo]', char.lower()) and len(char) ==1:
         return True
     else:
         return False
@@ -35,7 +35,7 @@ def format_phone(the_number):
 #4
 def format_date(the_date):
     date = re.findall('\d{2}', the_date)   
-    return '20' + date[2] + "-" +  date[1] + '-' + date[0]
+    return '20' + date[2] + "-" +  date[0] + '-' + date[1]
     
 
 
