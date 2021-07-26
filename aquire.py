@@ -46,5 +46,32 @@ def get_articles(website_list):
     return article_list
 
 
+def get_blog_articles(category_list):
+    
+    base_url = 'https://inshorts.com/en/read/'
+    
+    article_list = []
+    for category in category_list:
+        response = get(f'{base_url}{category}')
+        html = response.text
+        soup = BeautifulSoup(html, 'html.parser')
+        
+
+        titles = soup.findAll('div', class_= 'news-card-title')
+        
+        content = soup.findAll('div', itemprop = 'articleBody') 
+    
+        for i in range(len(titles)):
+            ## creating the dictionary
+            my_dict = {"Title": titles[i].text.replace('\n',''), 'Content': content[i].text.replace('\n',''), 
+                       'Category': category}
+            
+           
+            article_list.append(my_dict)
+        
+    return article_list
+
+
+
     
     
