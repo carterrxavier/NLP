@@ -49,12 +49,20 @@ def adjust_stopwords(string, addlist = [], removelist = []):
             
     words = string.split()
     filtered_words = [w for w in words if w not in stopword_list]
-    print('Removed {} stopwords'.format(len(words) - len(filtered_words)))
-    print('---')
-    
     article_without_stopwords = ' '.join(filtered_words)
     
     return article_without_stopwords
+
+def tidy_text(string, SorL = True, addList=[], removeList = []):
+    string = basic_clean(string)
+    string = tokenize_string(string)
+    if SorL == False:
+        string = stem_string(string)
+    else:
+        string = lemmatize_string(string)
+    string = adjust_stopwords(string)
+    
+    return string
     
     
     
